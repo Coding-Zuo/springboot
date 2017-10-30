@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zuo.mosaic.backend.mapper.UsInfoMapper">
+	
+	<sql id="tableName">
+		t_usInfo
+	</sql>
+	
+	<sql id="insertField">
+		name,
+		person,
+		email,
+		phone,
+		address,
+		detail,
+		createtime
+	</sql>
+	
+	<sql id="insertValue">
+		#{name},
+		#{person},
+		#{email},
+		#{phone},
+		#{address},
+		#{detail},
+		#{createtime}
+	</sql>
+	 
+	<sql id="updateField">
+		name=#{name},
+		person=#{person},
+		email=#{email},
+		phone=#{phone},
+		address=#{address},
+		detail=#{detail},
+		updatetime=#{updatetime}
+	</sql>
+	
+	<select id="selectUsInfo" resultType="Map">
+		select * from <include refid="tableName"/> where id=1
+	</select>
+	
+	<update id="update" parameterType="Map">
+		UPDATE <include refid="tableName"/> SET 
+			<include refid="updateField"/>
+		WHERE id=1
+	</update>
+	
+	<insert id="insert" parameterType="Map">
+		INSERT INTO <include refid="tableName"/>(
+			<include refid="insertField"/>
+		) VALUES(
+			<include refid="insertValue"/>
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="Map">
+		delete form <include refid="tableName"/> where id=1
+	</delete>
+	
+	
+</mapper>
+
+
+
+
